@@ -1,15 +1,17 @@
 Program escultores;
+uses Windows;
 
 // AMBIENTE
 const
   numerosChar = ['0'..'9']; // del 0 al 9.
-  a_dir = 'escultores-secuencia.txt';
+  a_dir = '../escultores-secuencia.txt';
 var
   a_sec : File of Char;
   v_sec : Char;
   continente, nombre, anioChar : ShortString;
   eleccion_usuario : Char;
   total_escultores, anioInt, total_incorrectos : Integer;
+
 // PROCEDIMIENTOS
 procedure reiniciarTemp;
 begin
@@ -75,7 +77,11 @@ end;
 
 // ALGORITMO
 begin
+
+  // Colocar consola en UTF8 (acentos, ñ, etc).
+  SetConsoleOutputCP(CP_UTF8);
   Assign(a_sec, a_dir);
+
   // Manejo de errores.
   {$I-}
   Reset(a_sec);
@@ -85,20 +91,26 @@ begin
     WriteLn('ERROR: Por favor, cree un archivo .txt llamado "escultores-secuencia.txt"');
     halt(2); // Detiene programa.
   end;
+
+  // Iniciar contadores.
   total_escultores := 0;
+
   // Preguntar continente.
   WriteLn('¿Que continente desea consultar?');
-  WriteLn('X -> America | E -> Europa | F -> Africa | A -> Asia');
+  WriteLn('X -> América | E -> Europa | F -> Africa | A -> Asia');
   ReadLn(eleccion_usuario);
 
   // Análisis de secuencia.
   while not Eof(a_sec) do
   begin
-    WriteLn('----------------');
+
     total_escultores := total_escultores + 1;
+
     // Reiniciar temporales.
     reiniciarTemp;
+
     Read(a_sec, v_sec);
+    WriteLn('----------------');
 
     // CONTINENTE:
     continente := v_sec;
@@ -125,14 +137,13 @@ begin
     begin
       anioInt := invertir(anioInt);
     end;
-    
-    WriteLn('Anio: ', anioInt);
+    WriteLn('Año: ', anioInt);
 
 
     // SIGUIENTE ESCULTOR...
   end;
 
   Close(a_sec);
-  WriteLn('Secuencia terminada.');
+  WriteLn('Análisis terminado.');
 
 end.
