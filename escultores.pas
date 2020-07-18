@@ -4,7 +4,7 @@ uses Windows;
 // AMBIENTE
 const
   numerosChar = ['0'..'9']; // del 0 al 9.
-  a_dir = '../escultores-secuencia.txt';
+  a_dir = './escultores-secuencia.txt';
 var
   a_sec : File of Char;
   v_sec : Char;
