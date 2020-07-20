@@ -53,7 +53,7 @@ begin
       resp := True;
     end;
   end;
-  WriteLn('+Invertir?: ', resp);
+  // WriteLn('+Invertir?: ', resp);
   hayQueInvertir := resp;
 end;
 
@@ -70,8 +70,8 @@ begin
     m := (m * 10) + (n MOD 10);
     n := (n DIV 10);
   end;
-  WriteLn('Entrada: ', anioIncorrecto);
-  WriteLn('Invertido: ', m);
+  // WriteLn('Entrada: ', anioIncorrecto);
+  // WriteLn('Invertido: ', m);
   invertir := m;
 end;
 
@@ -110,11 +110,11 @@ begin
     reiniciarTemp;
 
     Read(a_sec, v_sec);
-    WriteLn('----------------');
+    // WriteLn('----------------');
 
     // CONTINENTE:
     continente := v_sec;
-    WriteLn('Continente: ', devolverContinente(continente));
+    // WriteLn('Continente: ', devolverContinente(continente));
     Read(a_sec, v_sec);
 
     // NOMBRE:
@@ -123,7 +123,7 @@ begin
       nombre := nombre + v_sec; // Concatenar dos caracteres.
       Read(a_sec, v_sec);
     end;
-    WriteLn('Nombre es: ', nombre);
+    // WriteLn('Nombre es: ', nombre);
 
     // AÑO:
     while (v_sec <> '|') do
@@ -137,7 +137,7 @@ begin
     begin
       anioInt := invertir(anioInt);
     end;
-    WriteLn('Año: ', anioInt);
+    // WriteLn('Año: ', anioInt);
 
 
     // SIGUIENTE ESCULTOR...
