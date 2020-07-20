@@ -11,6 +11,8 @@ var
   continente, nombre, anioChar : ShortString;
   eleccion_usuario : Char;
   total_escultores, anioInt, total_incorrectos : Integer;
+  porcentaje : Real;
+  guardarEscultor : Boolean;
 
 // PROCEDIMIENTOS
 procedure reiniciarTemp;
@@ -18,6 +20,14 @@ begin
   continente := '';
   nombre := '';
   anioChar := '';
+  guardarEscultor := False;
+end;
+
+procedure iniciarVariables;
+begin
+  total_escultores := 0;
+  total_incorrectos := 0;
+  guardarEscultor := False;
 end;
 
 // FUNCIONES
@@ -26,7 +36,7 @@ var
   resp : ShortString;
 begin
   case continente of
-    'X' : resp := 'America';
+    'X' : resp := 'América';
     'E' : resp := 'Europa';
     'F' : resp := 'Africa';
     'A' : resp := 'Asia';
@@ -53,7 +63,6 @@ begin
       resp := True;
     end;
   end;
-  // WriteLn('+Invertir?: ', resp);
   hayQueInvertir := resp;
 end;
 
@@ -70,8 +79,6 @@ begin
     m := (m * 10) + (n MOD 10);
     n := (n DIV 10);
   end;
-  // WriteLn('Entrada: ', anioIncorrecto);
-  // WriteLn('Invertido: ', m);
   invertir := m;
 end;
 
@@ -92,8 +99,8 @@ begin
     halt(2); // Detiene programa.
   end;
 
-  // Iniciar contadores.
-  total_escultores := 0;
+  // Iniciar variables.
+  iniciarVariables;
 
   // Preguntar continente.
   WriteLn('¿Que continente desea consultar?');
@@ -110,11 +117,12 @@ begin
     reiniciarTemp;
 
     Read(a_sec, v_sec);
-    // WriteLn('----------------');
 
     // CONTINENTE:
     continente := v_sec;
-    // WriteLn('Continente: ', devolverContinente(continente));
+    if (continente = eleccion_usuario) then
+      guardarEscultor := True;
+    // devolverContinente(continente));
     Read(a_sec, v_sec);
 
     // NOMBRE:
@@ -123,7 +131,6 @@ begin
       nombre := nombre + v_sec; // Concatenar dos caracteres.
       Read(a_sec, v_sec);
     end;
-    // WriteLn('Nombre es: ', nombre);
 
     // AÑO:
     while (v_sec <> '|') do
@@ -137,13 +144,21 @@ begin
     begin
       anioInt := invertir(anioInt);
     end;
-    // WriteLn('Año: ', anioInt);
 
+    if (guardarEscultor) then
+    begin
+      // Escribir secuencia de salida acá. Usando variables temporales guardadas anteriormente.
 
+    end;
     // SIGUIENTE ESCULTOR...
   end;
 
   Close(a_sec);
   WriteLn('Análisis terminado.');
+
+  porcentaje := (total_incorrectos * 100) / total_escultores;
+  WriteLn('Porcentaje de incorrectos sobre total de escultores: ', Round(porcentaje), '%');
+
+  
 
 end.
