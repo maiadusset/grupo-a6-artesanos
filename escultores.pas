@@ -156,9 +156,10 @@ begin
   Close(a_sec);
   WriteLn('Análisis terminado.');
 
-  porcentaje := (total_incorrectos * 100) / total_escultores;
-  WriteLn('Porcentaje de incorrectos sobre total de escultores: ', Round(porcentaje), '%');
+  // Informar escultores antes del 2000.
 
-  
+  // Informar porcentaje incorrecto.
+  porcentaje := (total_incorrectos * 100) / total_escultores;
+  WriteLn('- Porcentaje de incorrectos sobre total de escultores: ', Round(porcentaje), '%');
 
 end.
