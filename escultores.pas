@@ -107,6 +107,10 @@ begin
   WriteLn('X -> América | E -> Europa | F -> Africa | A -> Asia');
   ReadLn(eleccion_usuario);
 
+  while (eleccion_usuario <> continente) do
+  WriteLn('Error. Por favor, elija un continente que esté entre las opciones');
+  WriteLn('¿Qué continente desea consultar?')
+  
   // Análisis de secuencia.
   while not Eof(a_sec) do
   begin
